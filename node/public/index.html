@@ -60,17 +60,20 @@
         /* find if a specific product had a discount in the previous day
            NEED TO COMPLETE */
         function show_item() {
+            itemName = $('#itemName').val()
             return get_item(itemName)
             .then(response => response.json())
-                .then(item => {
-                    $('#item').empty()
-                    item.forEach(item => {
-                        $('#item').append('<option value="' + item.id + '">' + item.name + '</option>')
-                    })
+            .then(items => {
+                $('#items').empty()
+                list = $('<ol>')
+                items.forEach(item => {
+                    list.append("<li>Item ID: " + item.id + "Item Name: " + item.name + "</li>")
                 })
+                $('#items').append(list)
+            })
         } 
                   
-            /* itemName = $('#item').val()
+            /* 
             get_item(itemName)
             .then(response => response.json())
                 .then(response => response[0])
@@ -125,9 +128,9 @@
     </div>
 
     <p class="tab">
-        Item <input id="itemId" class="selectBoxNoRghtMarg">
+        Item <input id="itemName" class="selectBoxNoRghtMarg">
         <button onclick="show_item()" class="button button12px">Get</button>
-        <div id="item_data"></div>
+        <div id="items"></div>
     </p>
     
 </body>
