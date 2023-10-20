@@ -1,6 +1,10 @@
 <html>
 
 <head>
+    <title>Page Title</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="js/app.js"></script>
     <link rel="stylesheet" href="css/app.css">
@@ -52,14 +56,79 @@
                     $('#store_data').append(table)
                 })
         }
-    </script>
-</head>
+
+        /* find if a specific product had a discount in the previous day
+           NEED TO COMPLETE */
+        function show_item() {
+            return get_item(itemName)
+            .then(response => response.json())
+                .then(item => {
+                    $('#item').empty()
+                    item.forEach(item => {
+                        $('#item').append('<option value="' + item.id + '">' + item.name + '</option>')
+                    })
+                })
+        } 
+                  
+            /* itemName = $('#item').val()
+            get_item(itemName)
+            .then(response => response.json())
+                .then(response => response[0])
+                .then(item_data => {
+                    $('#item_data').empty()
+                        subchains.forEach(subchain => {
+                        $('#subchains').append('<option value="' + subchain.id + '">' + subchain.name + '</option>')
+                    table = $('<table id="item_details">')
+                    table.append('<tr><td>Id</td><td>' + item_data + '</td></tr>')
+                    table.append('<tr><td>Id</td><td>' + item_data.id + '</td></tr>')
+                    table.append('<tr><td>Name</td><td>' + item_data.name + '</td></tr>')
+                    table.append('<tr><td>Unit Quantity</td><td>' + item_data.unit_qty + '</td></tr>')
+                    $('#item_data').append(table) */
+
+    </script>    
+    </head>
 
 <body>
-    Chain: <select id="chains"></select>
-    Subchain: <select id="subchains"></select>
-    Store: <input id="store">
-    <button onclick="show_store()">Get</button>
-    <div id="store_data"></div>
+    <div class="header">
+        <h1>Prices</h1>
+        <p>This project compares products prices in supermarkets over time.</p>
+    </div>
+      
+    <div class="content">
+        <h1>Let's start comparing!</h1>
+    </div>
+
+    <div class="content">
+        <h2>Stores Details</h2>
+    </div> 
+      
+    <p class="tab">
+        Chain <select id="chains" class="selectBox"></select>
+        Subchain <select id="subchains" class="selectBox"></select>
+        Store ID <input id="store" class="selectBoxNoRghtMarg">
+        <button onclick="show_store()" class="button button12px">Get</button>
+        <div id="store_data"></div>
+    </p>
+
+    <div class="content">
+        <h2>Find Stores by City</h2>
+    </div> 
+
+    <p class="tab">
+        City <input id="city" class="selectBoxNoRghtMarg">
+        <button onclick="show_store_by_city()" class="button button12px">Get</button>
+        <div id="cities_stores_data"></div>
+    </p>
+
+    <div class="content">
+        <h2>Items Prices Over Time</h2>
+    </div>
+
+    <p class="tab">
+        Item <input id="itemId" class="selectBoxNoRghtMarg">
+        <button onclick="show_item()" class="button button12px">Get</button>
+        <div id="item_data"></div>
+    </p>
+    
 </body>
 </html>

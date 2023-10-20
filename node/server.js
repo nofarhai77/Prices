@@ -38,7 +38,7 @@ app.get('/chains', (req, res) => {
 app.get('/chain/:chainId', (req, res) => {
   const chainId = req.params['chainId'];
   const sql = "SELECT id, name FROM prices.chains " +
-      `WHERE id=${chainId};`
+              `WHERE id=${chainId};`
   console.log(sql)
   db.query(sql, function (err, result) {
     console.log("Result: " + JSON.stringify(result));
@@ -50,7 +50,7 @@ app.get('/chain/:chainId', (req, res) => {
 app.get('/chain/:chainId/subchains', (req, res) => {
   const chainId = req.params['chainId'];
   const sql = "SELECT id, name FROM prices.subchains " +
-      `WHERE chain=${chainId};`
+              `WHERE chain=${chainId};`
   console.log(sql)
   db.query(sql, function (err, result) {
     console.log("Result: " + JSON.stringify(result));
@@ -78,6 +78,36 @@ app.get('/chain/:chainId/subchain/:subchainId/store/:storeId', (req, res) => {
   const storeId = req.params['storeId'];
   const sql = "SELECT id, `chain`, subchain, `type`, name, city, address, zipcode FROM prices.Stores " +
       `WHERE chain=${chainId} AND subchain=${subchainId} AND id=${storeId};`
+  console.log(sql)
+  db.query(sql, function (err, result) {
+    console.log("Result: " + JSON.stringify(result));
+    if (err) throw err;
+    res.send(JSON.stringify(result));
+  });
+})
+
+/* get all stores in a specific city */
+app.get('/stores', (req, res) => {
+  const cityName = req.query['city'];
+  const sql = "SELECT id, `chain`, subchain, name, city, address FROM prices.Stores " +
+      `WHERE city='${cityName}';`
+  console.log(sql)
+  db.query(sql, function (err, result) {
+    console.log("Result: " + JSON.stringify(result));
+    if (err) throw err;
+    res.send(JSON.stringify(result));  
+  });
+})
+
+/* find if a specific product had a discount in the previous day.
+   STILL NEED TO FIX:
+   its not working when try to select by product's hebrew name
+   so meanwhile were selecting by product's id
+*/
+app.get('/item/:itemName', (req, res) => {
+  const itemName = req.params['itemName'];
+  const sql = "SELECT name, id, unit_qty FROM prices.items " +
+      `WHERE name='${itemName}';`
   console.log(sql)
   db.query(sql, function (err, result) {
     console.log("Result: " + JSON.stringify(result));

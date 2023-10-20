@@ -1,3 +1,85 @@
-#store_details {
-    border: solid;
+/* this document includes all style properties for index.html file */
+
+.tab {
+    font-family: system-ui;
+    display: inline-block;
+    margin-left: 30px;
+    margin-top: 10px;
+}
+
+/* table's style*/
+table {
+    border-collapse: collapse;
+    margin-left: 30px;
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+
+th, td {
+    text-align: center;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #D6EEEE;
+}
+
+
+/* style the body */
+body {
+    font-family: Georgia;
+    margin: 0;
+}
+
+/* style the header */
+.header {
+    padding: 1px;
+    text-align: center;
+    background: #1abc9c;
+    color: white;
+    font-size: 22px;
+}
+
+/* style the page content */
+.content {
+    font-family: system-ui;
+    color: #1abc9c;
+    padding: 7px;
+    margin-left: 20px;
+}
+
+/* buttons style */
+.button {
+    font-family: system-ui;
+    background-color: #1abc9c;
+    border: none;
+    color: white;
+    padding: 7px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 6px 2px;
+    cursor: pointer;
+}
+
+.button12px {
+    border-radius: 12px;
+}
+
+/* select boxes style */
+.selectBox {
+    font-family: system-ui;
+    padding: 10px;
+    background: #edf2ff;
+    border: none;
+    margin-right: 20px;
+}
+
+/* select boxes style - with no right margin (for buttons after boxes)*/
+.selectBoxNoRghtMarg {
+    font-family: system-ui;
+    padding: 10px;
+    background: #edf2ff;
+    border: none;
 }
