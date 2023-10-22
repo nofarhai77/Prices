@@ -57,11 +57,11 @@
                 })
         }
 
-        /* find if a specific product had a discount in the previous day
+        /* find the price of specific product
            NEED TO COMPLETE */
         function show_item() {
             itemName = $('#itemName').val()
-            return get_item(itemName)
+            get_item(itemName)
             .then(response => response.json())
             .then(items => {
                 $('#items').empty()
@@ -72,21 +72,25 @@
                 $('#items').append(list)
             })
         } 
-                  
-            /* 
-            get_item(itemName)
+        
+        function update_city_list() {
+            const startWith = $('#city').val()
+            get_cities_by_prefix(startWith)
             .then(response => response.json())
-                .then(response => response[0])
-                .then(item_data => {
-                    $('#item_data').empty()
-                        subchains.forEach(subchain => {
-                        $('#subchains').append('<option value="' + subchain.id + '">' + subchain.name + '</option>')
-                    table = $('<table id="item_details">')
-                    table.append('<tr><td>Id</td><td>' + item_data + '</td></tr>')
-                    table.append('<tr><td>Id</td><td>' + item_data.id + '</td></tr>')
-                    table.append('<tr><td>Name</td><td>' + item_data.name + '</td></tr>')
-                    table.append('<tr><td>Unit Quantity</td><td>' + item_data.unit_qty + '</td></tr>')
-                    $('#item_data').append(table) */
+            .then(cities => {
+                $('#cityList').empty()
+                cities.forEach(city => {
+                    console.log(city.city)
+                    $('#cityList').append("<option value=" + city.city + ">")
+                })
+            })
+        }
+
+        /*<input type="text" name="example" list="exampleList">
+        <datalist id="exampleList">
+        <option value="A">  
+        <option value="B">
+        */
 
     </script>    
     </head>
@@ -118,10 +122,22 @@
     </div> 
 
     <p class="tab">
+        City <input type="text" id="city" name="cities" list="cityList" class="selectBoxNoRghtMarg" oninput="update_city_list()" onkeypress="update_city_list()">    
+        <button onclick="show_store_by_city()" class="button button12px">Get</button>
+        <datalist id="cityList"> </datalist>
+    </p>
+
+    <!--
+    <p class="tab">
         City <input id="city" class="selectBoxNoRghtMarg">
         <button onclick="show_store_by_city()" class="button button12px">Get</button>
         <div id="cities_stores_data"></div>
     </p>
+
+    <input type="text" id="city2" name="cities" list="cityList"
+    oninput="update_city_list()" onkeypress="update_city_list()">
+    <datalist id="cityList"> </datalist>
+    -->
 
     <div class="content">
         <h2>Items Prices Over Time</h2>

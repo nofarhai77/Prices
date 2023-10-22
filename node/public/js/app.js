@@ -15,4 +15,9 @@ function get_item(itemName) {
     return fetch("item/" + itemName)
 }
 
+/* for autocomplete function
+   return cities with name that start with given input */
+function get_cities_by_prefix(prefix) {
+    return fetch("cities?startWith=" + prefix)
+}
 
