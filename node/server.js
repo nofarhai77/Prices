@@ -116,6 +116,18 @@ app.get('/item/:itemName', (req, res) => {
   });
 })
 
+
+app.get('/cities', (req, res) => {
+  const startWith = req.query['startWith'];
+  const sql = `select distinct city from prices.stores where city like '${startWith}%'`;
+  console.log(sql)
+  db.query(sql, function (err, result) {
+    console.log("Result: " + JSON.stringify(result));
+    if (err) throw err;
+    res.send(JSON.stringify(result));  
+  });
+})
+
 app.listen(port, hostname, () => {
   console.log(`Server running at http://${hostname}:${port}/`);
 });
