@@ -10,7 +10,7 @@ function get_subchains(chain) {
     return fetch("chain/" + chain + "/subchains")
 }
 
-/* find if a specific product had a discount in the previous day */
+/* find the price of a specific product */
 function get_item(itemName) {
     return fetch("item/" + itemName)
 }
