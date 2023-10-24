@@ -15,9 +15,12 @@ function get_item(itemName) {
     return fetch("item/" + itemName)
 }
 
-/* for autocomplete function
-   return cities with name that start with given input */
+/* for autocomplete function - return cities with given prefix */
 function get_cities_by_prefix(prefix) {
     return fetch("cities?startWith=" + prefix)
 }
 
+/* show all stores in a specific city */
+function get_stores_in_city(city) {
+    return fetch("stores?city=" + city)
+}
