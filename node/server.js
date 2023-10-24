@@ -86,6 +86,23 @@ app.get('/chain/:chainId/subchain/:subchainId/store/:storeId', (req, res) => {
   });
 })
 
+/* find if a specific product had a discount in the previous day.
+   STILL NEED TO FIX:
+   its not working when try to select by product's hebrew name
+   so meanwhile were selecting by product's id
+*/
+app.get('/item/:itemName', (req, res) => {
+  const itemName = req.params['itemName'];
+  const sql = "SELECT name, id, unit_qty FROM prices.items " +
+      `WHERE name='${itemName}';`
+  console.log(sql)
+  db.query(sql, function (err, result) {
+    console.log("Result: " + JSON.stringify(result));
+    if (err) throw err;
+    res.send(JSON.stringify(result));
+  });
+})
+
 /* using for 'city' autocomplete field */
 app.get('/cities', (req, res) => {
   const startWith = req.query['startWith'];
@@ -108,23 +125,6 @@ app.get('/stores', (req, res) => {
     console.log("Result: " + JSON.stringify(result));
     if (err) throw err;
     res.send(JSON.stringify(result));  
-  });
-})
-
-/* find if a specific product had a discount in the previous day.
-   STILL NEED TO FIX:
-   its not working when try to select by product's hebrew name
-   so meanwhile were selecting by product's id
-*/
-app.get('/item/:itemName', (req, res) => {
-  const itemName = req.params['itemName'];
-  const sql = "SELECT name, id, unit_qty FROM prices.items " +
-      `WHERE name='${itemName}';`
-  console.log(sql)
-  db.query(sql, function (err, result) {
-    console.log("Result: " + JSON.stringify(result));
-    if (err) throw err;
-    res.send(JSON.stringify(result));
   });
 })
 
