@@ -86,11 +86,23 @@ app.get('/chain/:chainId/subchain/:subchainId/store/:storeId', (req, res) => {
   });
 })
 
+/* using for 'city' autocomplete field */
+app.get('/cities', (req, res) => {
+  const startWith = req.query['startWith'];
+  const sql = `select distinct city from prices.stores where city like '${startWith}%'`;
+  console.log(sql)
+  db.query(sql, function (err, result) {
+    console.log("Result: " + JSON.stringify(result));
+    if (err) throw err;
+    res.send(JSON.stringify(result));  
+  });
+})
+
 /* get all stores in a specific city */
 app.get('/stores', (req, res) => {
-  const cityName = req.query['city'];
-  const sql = "SELECT id, `chain`, subchain, name, city, address FROM prices.Stores " +
-      `WHERE city='${cityName}';`
+  const city = req.query['city'];
+  const sql = "SELECT name, address FROM prices.Stores " +
+      `WHERE city='${city}';`
   console.log(sql)
   db.query(sql, function (err, result) {
     console.log("Result: " + JSON.stringify(result));
@@ -116,17 +128,6 @@ app.get('/item/:itemName', (req, res) => {
   });
 })
 
-
-app.get('/cities', (req, res) => {
-  const startWith = req.query['startWith'];
-  const sql = `select distinct city from prices.stores where city like '${startWith}%'`;
-  console.log(sql)
-  db.query(sql, function (err, result) {
-    console.log("Result: " + JSON.stringify(result));
-    if (err) throw err;
-    res.send(JSON.stringify(result));  
-  });
-})
 
 app.listen(port, hostname, () => {
   console.log(`Server running at http://${hostname}:${port}/`);
