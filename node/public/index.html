@@ -4,7 +4,7 @@
     <title>Page Title</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="js/app.js"></script>
     <link rel="stylesheet" href="css/app.css">
@@ -14,7 +14,7 @@
             load_chains().then(() => {
                 load_subchains($('#chains').find(":selected").val())
             })
-            $('#chains').change(function() {load_subchains($('#chains').find(":selected").val())})
+            $('#chains').change(function () { load_subchains($('#chains').find(":selected").val()) })
         };
 
         function load_chains() {
@@ -57,79 +57,106 @@
                 })
         }
 
+        /* using for 'city' autocomplete field */
+        function update_city_list() {
+            const startWith = $('#city').val()
+            get_cities_by_prefix(startWith)
+                .then(response => response.json())
+                .then(cities => {
+                    $('#cityList').empty()
+                    cities.forEach(city => {
+                        console.log(city.city)
+                        $('#cityList').append("<option value=" + city.city + ">")
+                    })
+                })
+        }
+
+        /* show all stores in a specific city
+           after choosing specific city in 'city' autocomplete field */
+        function show_store_by_city() {
+            city = $('#city').val()
+            get_stores_in_city(city)
+                .then(response => response.json())
+                .then(cities_stores_data => {
+                    $('#cities_stores_data').empty()
+                    table = $('<table id="cities_stores_details">')
+                    table.append(
+                        '<tr><th>Name</th>' +
+                        '<th>Addresss</th>' + '</tr>')
+                    cities_stores_data.forEach(store => {
+                        table.append(
+                            '<tr><td>' + store.name + '</td>' +
+                            '<td>' + store.address + '</td>')
+                    })
+                    $('#cities_stores_data').append(table)
+                })
+
+        }
+
         /* find the price of specific product
            NEED TO COMPLETE */
         function show_item() {
             itemName = $('#itemName').val()
             get_item(itemName)
-            .then(response => response.json())
-            .then(items => {
-                $('#items').empty()
-                list = $('<ol>')
-                items.forEach(item => {
-                    list.append("<li>Item ID: " + item.id + "Item Name: " + item.name + "</li>")
+                .then(response => response.json())
+                .then(items => {
+                    $('#items').empty()
+                    list = $('<ol>')
+                    items.forEach(item => {
+                        list.append("<li>Item ID: " + item.id + "Item Name: " + item.name + "</li>")
+                    })
+                    $('#items').append(list)
                 })
-                $('#items').append(list)
-            })
-        } 
-        
-        function update_city_list() {
-            const startWith = $('#city').val()
-            get_cities_by_prefix(startWith)
-            .then(response => response.json())
-            .then(cities => {
-                $('#cityList').empty()
-                cities.forEach(city => {
-                    console.log(city.city)
-                    $('#cityList').append("<option value=" + city.city + ">")
-                })
-            })
         }
 
-    </script>    
-    </head>
+    </script>
+</head>
 
 <body>
     <div class="header">
         <h1>Prices</h1>
         <p>This project compares products prices in supermarkets over time.</p>
     </div>
-      
+
     <div class="content">
         <h1>Let's start comparing!</h1>
     </div>
 
     <div class="content">
         <h2>Stores Details</h2>
-    </div> 
-      
+    </div>
+
     <p class="tab">
         Chain <select id="chains" class="selectBox"></select>
         Subchain <select id="subchains" class="selectBox"></select>
         Store ID <input id="store" class="selectBoxNoRghtMarg">
         <button onclick="show_store()" class="button button12px">Get</button>
-        <div id="store_data"></div>
+    <div id="store_data"></div>
     </p>
 
     <div class="content">
         <h2>Find Stores by City</h2>
-    </div> 
-
-    <p class="tab">
-        City <input type="text" id="city" name="cities" list="cityList" class="selectBoxNoRghtMarg" oninput="update_city_list()" onkeypress="update_city_list()">    
-        <button onclick="show_store_by_city()" class="button button12px">Get</button>
-        <datalist id="cityList"> </datalist>
-    </p>
-
-    <div class="content">
-        <h2>Items Prices Over Time</h2>
     </div>
 
     <p class="tab">
-        Item <input id="itemName" class="selectBoxNoRghtMarg">
-        <button onclick="show_item()" class="button button12px">Get</button>
+        City <input type="text" id="city" name="cities" list="cityList" class="selectBoxNoRghtMarg"
+            oninput="update_city_list()" onkeypress="update_city_list()">
+        <datalist id="cityList"> </datalist>
+        <button onclick="show_store_by_city()" class="button button12px">Get</button>
+    <div id="cities_stores_data">
+        <div id="cities_stores"></div>
+        </p>
+
+        <div class="content">
+            <h2>Items Prices Over Time</h2>
+        </div>
+
+        <p class="tab">
+            Item <input id="itemName" class="selectBoxNoRghtMarg">
+            <button onclick="show_item()" class="button button12px">Get</button>
         <div id="items"></div>
-    </p>
-    
+        </p>
+
 </body>
+
 </html>
