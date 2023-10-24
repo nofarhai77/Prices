@@ -86,11 +86,7 @@ app.get('/chain/:chainId/subchain/:subchainId/store/:storeId', (req, res) => {
   });
 })
 
-/* find if a specific product had a discount in the previous day.
-   STILL NEED TO FIX:
-   its not working when try to select by product's hebrew name
-   so meanwhile were selecting by product's id
-*/
+/* find the price of a specific product */
 app.get('/item/:itemName', (req, res) => {
   const itemName = req.params['itemName'];
   const sql = "SELECT name, id, unit_qty FROM prices.items " +
