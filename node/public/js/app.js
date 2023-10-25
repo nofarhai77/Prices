@@ -10,9 +10,14 @@ function get_subchains(chain) {
     return fetch("chain/" + chain + "/subchains")
 }
 
-/* find the price of a specific product */
-function get_item(itemName) {
-    return fetch("item/" + itemName)
+// /* find the price of a specific product */
+// function get_item(itemName) {
+//     return fetch("item/" + itemName)
+// }
+
+/* for autocomplete function - return items with given prefix */
+function get_item_by_prefix(prefix) {
+    return fetch("item?startWith=" + prefix)
 }
 
 /* for autocomplete function - return cities with given prefix */
