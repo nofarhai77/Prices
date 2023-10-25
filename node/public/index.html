@@ -66,12 +66,12 @@
                     $('#cityList').empty()
                     cities.forEach(city => {
                         console.log(city.city)
-                        $('#cityList').append("<option value=" + city.city + ">")
+                        $('#cityList').append("<option value=" + city.city + "/>")
                     })
                 })
         }
 
-        /* show all stores in a specific city
+        /* show all stores in specific city
            after choosing specific city in 'city' autocomplete field */
         function show_store_by_city() {
             city = $('#city').val()
@@ -93,20 +93,55 @@
 
         }
 
-        /* find the price of specific product
-           NEED TO COMPLETE */
-        function show_item() {
-            itemName = $('#itemName').val()
-            get_item(itemName)
+        // /* OLD - find the price of specific product
+        //    NEED TO COMPLETE */
+        // function show_item() {
+        //     itemName = $('#itemName').val()
+        //     get_item(itemName)
+        //         .then(response => response.json())
+        //         .then(items => {
+        //             $('#items').empty()
+        //             list = $('<ol>')
+        //             items.forEach(item => {
+        //                 list.append("<li>Item ID: " + item.id + "Item Name: " + item.name + "</li>")
+        //             })
+        //             $('#items').append(list)
+        //         })
+        // }
+
+        /* using for 'item' autocomplete field */
+        function update_item_list() {
+            const itemStartWith = $('#item').val()
+            get_item_by_prefix(itemStartWith)
                 .then(response => response.json())
                 .then(items => {
-                    $('#items').empty()
-                    list = $('<ol>')
+                    $('#itemList').empty()
                     items.forEach(item => {
-                        list.append("<li>Item ID: " + item.id + "Item Name: " + item.name + "</li>")
+                        console.log(item)
+                        $('#itemList').append("<option value='" + item.name + "' id=item-" + item.id + "/>")
                     })
-                    $('#items').append(list)
                 })
+        }
+
+        /* */
+           function show_item_prices() {
+            // city = $('#city').val()
+            // get_stores_in_city(city)
+            //     .then(response => response.json())
+            //     .then(cities_stores_data => {
+            //         $('#cities_stores_data').empty()
+            //         table = $('<table id="cities_stores_details">')
+            //         table.append(
+            //             '<tr><th>Name</th>' +
+            //             '<th>Addresss</th>' + '</tr>')
+            //         cities_stores_data.forEach(store => {
+            //             table.append(
+            //                 '<tr><td>' + store.name + '</td>' +
+            //                 '<td>' + store.address + '</td>')
+            //         })
+            //         $('#cities_stores_data').append(table)
+            //     })
+
         }
 
     </script>
@@ -152,10 +187,19 @@
         </div>
 
         <p class="tab">
+            Item <input type="text" id="item" name="items" list="itemList" class="selectBoxNoRghtMarg"
+                oninput="update_item_list()" onkeypress="update_item_list()">
+            <datalist id="itemList"> </datalist>
+            <button onclick="show_item_prices()" class="button button12px">Get</button>
+        <div id="item_prices_data">
+            <div id="item_prices"></div>
+            </p>
+    
+        <!-- <p class="tab">
             Item <input id="itemName" class="selectBoxNoRghtMarg">
             <button onclick="show_item()" class="button button12px">Get</button>
         <div id="items"></div>
-        </p>
+        </p> -->
 
 </body>
 
