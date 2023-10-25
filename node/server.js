@@ -97,17 +97,17 @@ app.get('/chain/:chainId/subchain/:subchainId/store/:storeId', (req, res) => {
 // })
 
 
-// /* find the price of specific product */
-// app.get('/item/:itemId', (req, res) => {
-//   const itemId = req.params['itemId'];
-//   const sql = "SELECT name, id, unit_qty FROM prices.items " + `WHERE id='${itemId}';`
-//   console.log(sql)
-//   db.query(sql, function (err, result) {
-//     console.log("Result: " + JSON.stringify(result));
-//     if (err) throw err;
-//     res.send(JSON.stringify(result));
-//   });
-// })
+/* find the price of specific product */
+app.get('/item/:itemId', (req, res) => {
+  const itemId = req.params['itemId'];
+  const sql = "SELECT name, id, unit_qty FROM prices.items " + `WHERE id='${itemId}';`
+  console.log(sql)
+  db.query(sql, function (err, result) {
+    console.log("Result: " + JSON.stringify(result));
+    if (err) throw err;
+    res.send(JSON.stringify(result));
+  });
+})
 
 /* using for autocomplete in 'item' field */
 app.get('/item', (req, res) => {
