@@ -111,7 +111,7 @@ app.get('/chain/:chainId/subchain/:subchainId/store/:storeId', (req, res) => {
 
 /* using for autocomplete in 'item' field */
 app.get('/item', (req, res) => {
-  const itemStartWith = req.query['startWith'];
+  const itemStartWith = req.query['itemStartWith'];
   const sql = `select id, name from prices.items where name like '${itemStartWith}%' limit 10`;
   console.log(sql)
   db.query(sql, function (err, result) {
