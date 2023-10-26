@@ -1,13 +1,6 @@
-/* this document includes all style properties for index.html file */
+/* this document includes all design properties for index.html file */
 
-.tab {
-    font-family: system-ui;
-    display: inline-block;
-    margin-left: 30px;
-    margin-top: 10px;
-}
-
-/* table's style*/
+/* table's design*/
 table {
     border-collapse: collapse;
     margin-left: 30px;
@@ -25,13 +18,13 @@ tr:nth-child(even) {
 }
 
 
-/* style the body */
+/* body's design */
 body {
     font-family: Georgia;
     margin: 0;
 }
 
-/* style the header */
+/* header's design */
 .header {
     padding: 1px;
     text-align: center;
@@ -40,7 +33,7 @@ body {
     font-size: 22px;
 }
 
-/* style the page content */
+/* page-content's design */
 .content {
     font-family: system-ui;
     color: #1abc9c;
@@ -48,7 +41,7 @@ body {
     margin-left: 20px;
 }
 
-/* buttons style */
+/* buttons's design */
 .button {
     font-family: system-ui;
     background-color: #1abc9c;
@@ -67,7 +60,7 @@ body {
     border-radius: 12px;
 }
 
-/* select boxes style */
+/* select-boxe's design */
 .selectBox {
     font-family: system-ui;
     padding: 10px;
@@ -76,10 +69,18 @@ body {
     margin-right: 20px;
 }
 
-/* select boxes style - with no right margin (for buttons after boxes)*/
+/* selectboxe's design - with no right margin (for buttons after boxes) */
 .selectBoxNoRghtMarg {
     font-family: system-ui;
     padding: 10px;
     background: #edf2ff;
     border: none;
+}
+
+/* general definition for tab - this class wraps each section */
+.tab {
+    font-family: system-ui;
+    display: inline-block;
+    margin-left: 30px;
+    margin-top: 10px;
 }
