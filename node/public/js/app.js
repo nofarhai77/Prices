@@ -1,12 +1,14 @@
-
+/* load chains */
 function get_chains() {
     return fetch("chains")
 }
 
+/* load subchains according to given chain */
 function get_subchains(chain) {
     return fetch("chain/" + chain + "/subchains")
 }
 
+/* load specific store according to given chain, subchain and store_id */
 function get_store(chain, subchain, store_id) {
     return fetch("chain/" + chain + "/subchain/" + subchain + "/store/" + store_id)
 }

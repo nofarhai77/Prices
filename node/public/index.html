@@ -135,7 +135,7 @@
                     table.append(
                         '<tr><th>Price</th>' +
                         '<th>Store Id</th>' + '</tr>')
-                        item_prices_data.forEach(item => {
+                    item_prices_data.forEach(item => {
                         table.append(
                             '<tr><td>' + item.price + '</td>' +
                             '<td>' + item.store_id + '</td></tr>')
@@ -153,15 +153,14 @@
         <h1>Prices</h1>
         <p>This project compares products prices in supermarkets over time.</p>
     </div>
-
     <div class="content">
         <h1>Let's start comparing!</h1>
     </div>
 
+    <!-- Getting Store Details - according to given Chain, Subchain and Store ID -->
     <div class="content">
         <h2>Stores Details</h2>
     </div>
-
     <p class="tab">
         Chain <select id="chains" class="selectBox"></select>
         Subchain <select id="subchains" class="selectBox"></select>
@@ -170,10 +169,10 @@
     <div id="store_data"></div>
     </p>
 
+    <!-- Find all Stores in a specific City -->
     <div class="content">
         <h2>Find Stores by City</h2>
     </div>
-
     <p class="tab">
         City <input type="text" id="city" name="cities" list="cityList" class="selectBoxNoRghtMarg"
             oninput="update_city_list()" onkeypress="update_city_list()">
@@ -183,10 +182,10 @@
         <div id="cities_stores"></div>
         </p>
 
+        <!-- Find Item's Prices -->
         <div class="content">
-            <h2>Items Prices Over Time</h2>
+            <h2>Item's Prices</h2>
         </div>
-
         <p class="tab">
             Item <input type="text" id="item" name="items" list="itemList" class="selectBoxNoRghtMarg"
                 oninput="update_item_list()" onkeypress="update_item_list()">
@@ -195,12 +194,6 @@
         <div id="item_prices_data">
             <div id="item_prices"></div>
             </p>
-
-            <!-- <p class="tab">
-            Item <input id="itemName" class="selectBoxNoRghtMarg">
-            <button onclick="show_item()" class="button button12px">Get</button>
-        <div id="items"></div>
-        </p> -->
 
 </body>
 
