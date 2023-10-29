@@ -67,6 +67,7 @@ body {
     background: #edf2ff;
     border: none;
     margin-right: 20px;
+    width: 170px;
 }
 
 /* selectboxe's design - with no right margin (for buttons after boxes) */
@@ -75,6 +76,7 @@ body {
     padding: 10px;
     background: #edf2ff;
     border: none;
+    width: 170px;
 }
 
 /* general definition for tab - this class wraps each section */
