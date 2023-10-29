@@ -117,15 +117,14 @@
                     $('#itemList').empty()
                     items.forEach(item => {
                         console.log(item)
-                        $('#itemList').append("<option value='" + item.name + "' id=" + item.id + "/>") // write id instead of id=item-
+                        $('#itemList').append("<option value='" + item.name + "' id='item-" + item.id + "'/>")
                     })
                 })
         }
 
         /* find the price of specific product */
         function show_item_prices() {
-            itemId = $('#item').attr('id') // how to get item id?
-            console.log(itemId) // test
+            itemId = $('#itemList').find("option")[0].id.split('-')[1]
             get_item_prices(itemId)
                 .then(response => response.json())
                 .then(item_prices_data => {
