@@ -153,6 +153,7 @@
         <h1>Prices</h1>
         <p>This project compares products prices in supermarkets over time.</p>
     </div>
+
     <div class="content">
         <h1>Let's start comparing!</h1>
     </div>
@@ -178,22 +179,22 @@
             oninput="update_city_list()" onkeypress="update_city_list()">
         <datalist id="cityList"> </datalist>
         <button onclick="show_store_by_city()" class="button button12px">Get</button>
-    <div id="cities_stores_data">
-        <div id="cities_stores"></div>
-        </p>
+    <div id="cities_stores_data"></div>
+    <div id="cities_stores"></div>
+    </p>
 
-        <!-- Find Item's Prices -->
-        <div class="content">
-            <h2>Item's Prices</h2>
-        </div>
-        <p class="tab">
-            Item <input type="text" id="item" name="items" list="itemList" class="selectBoxNoRghtMarg"
-                oninput="update_item_list()" onkeypress="update_item_list()">
-            <datalist id="itemList"> </datalist>
-            <button onclick="show_item_prices()" class="button button12px">Get</button>
-        <div id="item_prices_data">
-            <div id="item_prices"></div>
-            </p>
+    <!-- Find Item's Prices -->
+    <div class="content">
+        <h2>Item's Prices</h2>
+    </div>
+    <p class="tab">
+        Item <input type="text" id="item" name="items" list="itemList" class="selectBoxNoRghtMarg"
+            oninput="update_item_list()" onkeypress="update_item_list()">
+        <datalist id="itemList"> </datalist>
+        <button onclick="show_item_prices()" class="button button12px">Get</button>
+    <div id="item_prices_data"></div>
+    <div id="item_prices"></div>
+    </p>
 
 </body>
 
