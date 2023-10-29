@@ -132,11 +132,15 @@
                     table = $('<table id="items_prices_details">')
                     table.append(
                         '<tr><th>Price</th>' +
-                        '<th>Store Id</th>' + '</tr>')
+                        '<th>Store Name</th>' +
+                        '<th>Store City</th>' +
+                        '<th>Store Address</th>' + '</tr>')
                     item_prices_data.forEach(item => {
                         table.append(
                             '<tr><td>' + item.price + '</td>' +
-                            '<td>' + item.store_id + '</td></tr>')
+                            '<td>' + item.name + '</td></tr>' +
+                            '<td>' + item.city + '</td></tr>' +
+                            '<td>' + item.address + '</td></tr>')
                     })
                     $('#item_prices_data').append(table)
                 })
