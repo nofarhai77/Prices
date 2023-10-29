@@ -11,9 +11,7 @@
 
     <script>
         window.onload = function () {
-            load_chains().then(() => {
-                load_subchains($('#chains').find(":selected").val())
-            })
+            load_chains()
             $('#chains').change(function () { load_subchains($('#chains').find(":selected").val()) })
         };
 
@@ -22,6 +20,7 @@
                 .then(response => response.json())
                 .then(chains => {
                     $('#chains').empty()
+                    $('#chains').append('<option value="" disabled selected>Select One</option>')
                     chains.forEach(chain => {
                         $('#chains').append('<option value="' + chain.id + '">' + chain.name + '</option>')
                     })
@@ -66,7 +65,7 @@
                     $('#cityList').empty()
                     cities.forEach(city => {
                         console.log(city.city)
-                        $('#cityList').append("<option value=" + city.city + "/>")
+                        $('#cityList').append("<option value='" + city.city + "'/>")
                     })
                 })
         }
