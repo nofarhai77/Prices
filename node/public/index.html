@@ -5,15 +5,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="css/app.css">
+    
+    <!-- sources for jquery functions (the url with min at the end is for the minimal sized file)
+         and for application's functions -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="js/app.js"></script>
 
     <script>
-        src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"
-        src="js/app.js"
-
-        window.onload = function () {
+        window.onload = function() {
             load_chains()
-            $('#chains').change(function () { load_subchains($('#chains').find(":selected").val()) })
-        };
+            // update subchains when chain is selected
+            $('#chains').change(function() {
+                load_subchains($('#chains').find(":selected").val())
+            })
+        }
 
         function load_chains() {
             return get_chains()
