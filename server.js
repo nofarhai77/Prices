@@ -9,7 +9,7 @@ const db = mysql.createConnection({
   password: "priceWatch1",
   database: "prices",
   port: 3306,
-  ssl: { ca: fs.readFileSync("../certs/DigiCertGlobalRootCA.crt.pem") }
+  ssl: { ca: fs.readFileSync("./certs/DigiCertGlobalRootCA.crt.pem") }
 });
 db.connect(function callback(err) {
   if (err) throw err;
