@@ -9,7 +9,7 @@ const db = mysql.createConnection({
   password: "priceWatch1",
   database: "prices",
   port: 3306,
-  ssl: { ca: fs.readFileSync("../certs/DigiCertGlobalRootCA.crt.pem") }
+  ssl: { ca: fs.readFileSync("./certs/DigiCertGlobalRootCA.crt.pem") }
 });
 db.connect(function callback(err) {
   if (err) throw err;
@@ -161,5 +161,5 @@ app.get('/item/:itemId', (req, res) => {
 // starts a port and host
 // making the localhost for the connections to listen to incoming requests from a client
 app.listen(port, () => {
-  console.log(`Server running at http://${hostname}:${port}/`);
+  console.log(`Server running at http://${hostname}:${process.env.PORT || port}/`);
 });
