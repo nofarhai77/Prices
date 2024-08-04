@@ -20,7 +20,9 @@ const hostname = '127.0.0.1';
 const port = 3000;
 
 // for searching static files in public folder (for js, css, images)
-app.use(express.static(__dirname + '/public'));
+// app.use(express.static(__dirname + '/public'));
+const path = require('path');
+app.use(express.static(path.join(__dirname, 'public')));
 
 // app.get() is a function that tells the server what to do
 // when a get request at the given route is called.
